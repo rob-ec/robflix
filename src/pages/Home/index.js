@@ -11,7 +11,7 @@ function Home() {
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"}
+        videoDescription={"I made this with the intention of avoiding major spoilers for a friend who's currently watching One Piece for the first time and is only up to the Davy Back Fight arc. It was admittedly a challenge, but it was kind of fun too! This is supposed to be a bit of a teaser for what's to come plus an amv he can actually watch haha. This song suits One Piece very well as almost every character has been shaped by pain, in both good ways and bad."}
       />
 
       <Carousel
