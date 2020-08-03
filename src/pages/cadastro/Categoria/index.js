@@ -29,7 +29,7 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    if (window.location.href.includes('localhost')) {
+    if (!window.location.href.includes('localhost')) {
       const URL = 'https://robflix-sigma.herokuapp.com/categorias';
       fetch(URL).then(async (serverResponse) => {
         if (serverResponse.ok) {
