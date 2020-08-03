@@ -30,7 +30,7 @@ function CadastroCategoria() {
 
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categorias';
+      const URL = 'https://robflix-sigma.herokuapp.com/categorias';
       fetch(URL).then(async (serverResponse) => {
         if (serverResponse.ok) {
           const response = await serverResponse.json();
