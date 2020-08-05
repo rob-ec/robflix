@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import config from '../../../config';
+import useForm from '../../../hooks/useForm';
 import PageDefault from '../../PageDefault';
 import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
@@ -10,44 +12,37 @@ function CadastroCategoria() {
     description: '',
     color: '',
   };
-  const [categories, setCategories] = useState([defaultCategory]);
-  const [category, setCategory] = useState(defaultCategory);
 
-  function handleChange(e) {
-    setCategory({
-      ...category,
-      [e.target.name]: e.target.value,
-    });
-  }
+  const [categories, setCategories] = useState([defaultCategory]);
+  const { handleChange, clearForm, values } = useForm(defaultCategory);
 
   function handleSubmit(e) {
     e.preventDefault();
+
     setCategories([
       ...categories,
-      category,
+      values,
     ]);
+
+    clearForm();
   }
 
   useEffect(() => {
-    if (!window.location.href.includes('localhost')) {
-      const URL = 'https://robflix-sigma.herokuapp.com/categorias';
-      fetch(URL).then(async (serverResponse) => {
-        if (serverResponse.ok) {
-          const response = await serverResponse.json();
-          setCategories(response);
-          return;
-        }
-        throw new Error('Não foi possível pegar os dados');
+    fetch(`${config.CONFIG_DB_HOST}/categorias`)
+      .then(async (serverResponse) => {
+        const response = await serverResponse.json();
+        setCategories([
+          ...response,
+        ]);
       });
-    }
   }, []);
 
   return (
     <PageDefault>
       <h1>
         Cadastro de Categoria:
-        <span style={{ color: category.color }}>
-          {category.name}
+        <span style={{ color: values.color }}>
+          {values.name}
         </span>
       </h1>
 
@@ -56,7 +51,7 @@ function CadastroCategoria() {
           label="Nome da Categoria"
           name="name"
           type="text"
-          value={category.name}
+          value={values.name}
           onChange={handleChange}
         />
 
@@ -64,7 +59,7 @@ function CadastroCategoria() {
           label="Descrição"
           name="description"
           type="textarea"
-          value={category.description}
+          value={values.description}
           onChange={handleChange}
         />
 
@@ -72,7 +67,7 @@ function CadastroCategoria() {
           label="Cor"
           name="color"
           type="color"
-          value={category.color}
+          value={values.color}
           onChange={handleChange}
         />
 
@@ -83,7 +78,7 @@ function CadastroCategoria() {
 
       <ul>
         {categories.map((item, index) => (
-          <li key={`${item.titulo}${index}`} style={{ color: item.cor }}>{item.titulo}</li>
+          <li key={`${item.titulo}${index + 0}`} style={{ color: item.cor }}>{item.titulo}</li>
         ))}
       </ul>
 
