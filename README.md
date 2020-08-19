@@ -4,4 +4,4 @@
   <img src="https://img.shields.io/github/last-commit/rob-ec/robflix?style=flat-square" alt="Tag Commit"/>
   <img src="https://img.shields.io/github/v/tag/rob-ec/robflix?style=flat-square" alt="Tag"/>
 </h1>
-<p>Semana de Imersão React, Alura</p>
+<p align="center">Semana de Imersão React, Alura</p>
